@@ -1,0 +1,21 @@
+1. Write A Java Program To Print Hello World
+2. Write A Java Program to Find Out the smallest between 3 distinct number
+3. Write A Java Program to input an age of person and check he is eligible for voting or not.
+4. Write a program to Convert temperature from fahrenheit to celcius.
+
+5. Write a proram to input the marks of 5 subject of student. then calculate the percentage. if percentage is greater then 60 print you are passed with 1st divistion , if percetnage is between 50 to 59 then print 2nd division, if percentage is between 33 to 49 then print 3rd division otherwise failed. You have print the marksheet with proper formate with total marks obtained and division.
+6. Find out the average of 5 numbers
+7. Program to calculate simple interest
+8. Write a program to swap to number.
+9. Write a program to to swap to number without using third variable
+10. Write to program to find out volume of cylinder
+11. WAP to find out compound interest
+12. Perform all relational operation
+13. Program to convert uppercase to lowercase
+14. program to convert lowercase to uppercase
+15. program to check whether entered character is in uppercase
+16. WAP to enter 2 number and both numbers are equal or not, if not then find out greater number.
+17. Program to convert person height from inches to cm
+18. program to convert days into month , weeks and day
+19. WAP to enter a character and check it is vowel or not
+20. Swap without using third variable and without using + , - operator
