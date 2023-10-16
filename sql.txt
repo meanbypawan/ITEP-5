@@ -1,0 +1,201 @@
+Java :- Datatype (byte,short,int,long,char,boolean,float,double)
+
+Database :- (int, tinyint, float, char, varchar, date, blob, clob..)
+
+create table user(
+  id int primary key auto_increment,
+  name varchar(100) not null,
+  age int(3),
+  mobile varchar(11) unique key
+);
+
+insert into user values(null,'Peeku',21,null)   
+insert into user(name,mobile,city_id) values('Dishu','9009111444',2000);
+
+insert into user(name,mobile,age) values('Khushi','9009111555',24),
+('Rani','9009111666',25),('Lokendra','9009111777',26),
+('Abhimanyu','9009111888',21),('Radhika','9009111999',21),
+('Rahul','9009111000',29),('Sandeep','9009000111',28),
+('Pratik','90091118787',28),('Dhara','90091118789',29)
+
+---------------------------------------------------------------
+   CRUD
+    C:- Create/Insert
+    R:- Reterive/ Select :-
+    U:- Update
+    D:- Delete
+
+Filter :-   where (>,<,>=,<=,=,!=,between, in, like, and, or)
+   select * from user where age >=25
+   
+   select * from user where age >=25 and age <=27
+   select * from user where age between 21 and 26
+   
+   select * from user where age = 21 or age = 26 or age = 29
+   select * from user where age in(21,26,29)
+   
+   alter table user add skill varchar(100)
+
+   update user set skill = 'java' where id in(1,2,3)
+   update user set skill = 'android' where id in(4,5,6)
+   update user set skill = 'js' where id in(7,8,9,10)
+   update user set skill = 'reactjs' where id in(11,12);
+   update user set skill = 'angular', name='vinay' where id = 10
+
+   Fetch user record whose age is greter then 22 or skill = android
+   select * from user where age <25 or skill = 'android'
+   
+   Fetch user record whose age between 25 and 30 or skill is either
+   android or java
+   
+   select * from user where age between 25 and 30 or skill in('android','java')
+   
+   select * from user where age between 21 and 28 and skill in ('android','java') 
+   
+   select * from user where age is null
+   select * from user where age is not null
+   
+   like + wildcards character
+   %  :- It represent zero or n occurance
+   _   :- It repesent 1 character
+   
+   fetch all user record whose name end with u
+   select * from user where name like '%u';
+   select * from user where name like 'R%a'
+   select * from user where name like '%ee%'
+   select * from user where name like '%a_';
+   select * from user where name like '___i%'
+   
+   Sorting:-
+   order by
+   select * from user order by name
+   
+   limit
+   select * from user limit 5
+   select * from user limit 6,4
+   select * from user limit 4 offset 6
+   
+   
+   Aggregate Function
+   max(), min(), avg(), count(), sum()
+   
+   select * from user where age = max(age)
+   
+   select * from user where age = (select max(age) from user);
+-----------------------------------------
+1. What are different ways to perform insert query ?
+2. Can we insert multiple record by using insert query
+3. Difference between primary key and unique key
+4. can we create primary key by combining more then one column
+5. What is projection
+-------------------------------------
+create table country(
+  id int primary key auto_increment,
+  country_name varchar(100) not null);
+
+create table state(
+  id int primary key auto_increment,
+  state_name varchar(100) not null,
+  country_id int,
+  foreign key (country_id) references country(id));
+
+create table city(
+  id int primary key auto_increment,
+  city_name varchar(100) not null,
+  state_id int,
+  foreign key(state_id) references state(id))
+  
+alter table user add(city_id int,
+ foreign key(city_id) references city(id));
+----------------------------------------------------------
+insert into country(country_name)
+values('India'),('Russia'),('USA');
+
+insert into state(state_name,country_id)
+values('MP',1),('UP',1),('MH',1),('GJ',1),
+('Masko',2),('New york',3)
+------------------------------
+insert into city(city_name,state_id)
+values('Indore',1),('Jabalpur',1),('Bhopal',1),('Ratlam',1),
+('Lucknow',2),('Agra',2),('Noida',2),('Pune',3),('Mumbai',3),
+('Ahamdabad',4),('Vadodra',4),('Gandhi Nagar',4),
+('Masko City 1',5),('Washington DC',6)
+update user set city_id=2 where id in(5,6)
+-------------------------------------------------
+ user(city_id)---> city(id) =====> inner join
+ 
+ city(state_id)---> state(id)
+ 
+ state(country_id) --->country(id)
+
+  select user.id,user.name,user.skill,city.city_name,state.state_name,
+  country.country_name
+  from user inner join city on user.city_id = city.id 
+  inner join state on city.state_id = state.id
+  inner join country on country.id = state.country_id
+
+  select user.id,user.name,user.skill,city.city_name
+  from user left outer city on user.city_id = city.id
+
+  
+  select user.id,user.name,user.skill,city.city_name
+  from user right outer city on user.city_id = city.id
+
+  select * from user,city
+
+  select user.id,user.name,user.age,city.city_name
+  from user inner join city on user.city_id = city.id
+  where user.age >=25 order by user.age
+
+  select count(*),skill from user group by skill  
+  
+  select count(*) as Total,city.city_name as CITY 
+  from user inner join city on user.city_id = city.id
+  group by user.city_id
+
+
+  ALTER TABLE user DROP FOREIGN KEY user_ibfk_1;
+  
+  alter table user add(foreign key(city_id) references city(id) on delete cascade)
+
+  delete
+    a. soft delete
+    b. hard delete	
+
+   create view USER_COMPLETE_INFO as select   user.id,user.name,user.skill,city.city_name,state.state_name,
+  country.country_name
+  from user inner join city on user.city_id = city.id 
+  inner join state on city.state_id = state.id
+  inner join country on country.id = state.country_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
