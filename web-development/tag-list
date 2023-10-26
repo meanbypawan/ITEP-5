@@ -1,0 +1,147 @@
+
+HTML :- It is language of WEB.
+        Hypertext Markup Language
+        Hypertext :- it is text represent link
+        Markup :- Tags
+                    a. Paired
+                    b. Unpaired
+        Developed By Tim Berners Lee
+        
+        Version :-
+         HTML 1-->2--->3--->4--->5
+        
+        Web version
+          Web1.0 --- static
+          Web2.0 --- Dynamic/social media
+          Web3.0 --- Block chain.....
+-----------------------------------------------------------------
+  140 around --(20-25)
+  
+  HTML Tag  :--- <div>
+  HTML Element:--<div>Content Of Div</div>
+   opening Tag + content + closing Tag
+     
+  <div>Content Of Div</div>   
+  
+  <img/>
+-----------------------------------------------------------------
+ Block level ()
+   div
+   p
+   h1,h2,h3,h4,h5,h6
+ ...................... 
+Inline Element 
+ span, label, small, img
+ -------------------------
+ Text formatting
+ <b>, <i>, <u>, <strong>, <em>, <sup>, <sub>, <del>.........
+ ---------------------------------------------
+ form input field
+ form
+ input :- <input type="text"/>
+          [text,email,password,number,radio,checkbox,color,file,button]
+ select:- <select>
+             <option>C</option>
+             <option>Java</option>
+          </select>         
+ textarea:- <textarea></textarea>
+ --------------------------------------------------
+ Table 
+   <table>, <thead>, <tbody>, <tfoot>, <tr> , <td> , <th>
+ --------------------------------------------------
+ Heading :-
+  h1 , h2, h3, h4, h5,h6
+ --------------------------------------------------
+ Media
+ img, picture, object, audio, video....
+  
+ ----------------------------------------------------
+ Semantic
+  <nav>,header, footer, section, main, aside,article
+  
+  SEO :- Search Engine Optimization
+ -----------------------------------------------------
+ button
+  <input type="button"/>
+  <input type="submit"/>
+  <input type="reset"/>
+  
+  <button></button>
+------------------------------------------------------
+ Listing :-
+   Ordered List
+    <ol>
+      <li>Item - 1</li>
+    </ol>
+    
+   Unordered List
+    <ul>
+      <li>Item - 1</li>
+    </ul>
+--------------------------------------------
+  anchor
+   <a href="https://www.google.com">Go to google</a>
+  
+  center
+  head
+  title
+  meta
+  marquee
+  link
+  small
+  <big>
+  script
+  style
+  font 
+  pre 
+   
+   
+
+
+   
+   
+   
+   
+
+
+
+
+
+
+
+  
+   
+ 
+ 
+ 
+  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       
+    
