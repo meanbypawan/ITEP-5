@@ -1,48 +1,57 @@
 <html>
-    <head></head>
+    <head>
+      <!-- 
+         Form submission
+           request (GET/POST)  
+            a. Query Parameter (GET)
+            b. Request Body (POST)
+            c. Request Headers(TOKEN)
+            d. Request + Cookies 
+       -->
+    </head>
     <body>
-     <form enctype="multipart/form-data" method="POST" action="server url/api url/ server end point">  
+     <form method="GET">  
        <p>
-         <input type="text" placeholder="Enter your name"/>
+         <input value="Cheeku Singh" type="text" placeholder="Enter your name"/>
        </p>
        <p>
-        <input type="email" placeholder="Enter email"/>
+        <input value="chk@gmail.com" type="email" placeholder="Enter email"/>
       </p>
       <p>
-        <input type="password" placeholder="Enter password"/>
+        <input value="12345" name="password" type="password" placeholder="Enter password"/>
       </p>
       <p>
-        <input type="number" placeholder="Enter your age"/ min="18" max="60">
+        <input value="25" name="age" type="number" placeholder="Enter your age"/ min="18" max="60">
       </p>
       <p>
-        <select>
+        <select name="qualification">
             <option>Select qualification</option>
             <option>Doctorate</option>
-            <option>Post graduate</option>
+            <option selected>Post graduate</option>
             <option>Graduate</option>
             <option>Under graduate</option>
             <option>Diploma</option>
         </select>
       </p>
       <p>
-        Gender : Male <input type="radio" name="gender"/>
-        Female <input type="radio" name="gender"/>
+        Gender : Male <input type="radio" name="gender" value="Male" checked/>
+        Female <input type="radio" name="gender" value="Female"/>
       </p>
       <p>
-        Skills : Java <input type="checkbox"/>
-        Android <input type="checkbox"/>
-        Angular <input type="checkbox"/>
-        Reactjs <input type="checkbox"/>
-        Javascript<input type="checkbox"/>
+        Skills : Java <input type="checkbox" name="skills[]" value="java" checked/>
+        Android <input type="checkbox" name="skills[]" value="android" checked/>
+        Angular <input type="checkbox" name="skills[]" value="angular"/>
+        Reactjs <input type="checkbox" name="skills[]" value="react"/>
+        Javascript<input type="checkbox" name="skills[]" value="js"/>
       </p>
       <p>
-        <textarea cols="50" rows="5" placeholder="Enter address"></textarea>
+        <textarea  name="address" cols="50" rows="5" placeholder="Enter address">Indore, MP</textarea>
       </p>
-      <p>
+      <!-- <p>
         upload pic : <input type="file"/>
-      </p>
+      </p> -->
       <p>
-        Favorite color : <input type="color"/>
+        Favorite color : <input type="color" value="#c43b3b" name="favoritecolor"/>
       </p>
       <p>
         <input type="submit" value="Sign up"/>
