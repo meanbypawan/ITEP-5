@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <style>
+            body{
+                margin: 0;
+            }
+            .first{
+                height: 650px;
+                border: 1px solid red;
+            }
+            .left{
+                width: 55%;
+                background-color: #343a40;
+                height: 100%;
+                float: left;
+                box-sizing: border-box;
+            }
+            .right{
+                width: 45%;
+                float: left;
+                background-color: #1CBBB4;
+                height: 100%;
+            }
+            .header{
+                padding: 15px;
+                height: 10%;
+                box-sizing: border-box;
+            }
+            .header img{
+                width: 50px;
+                height: 50px;
+            }
+            .header span{
+                color:white;
+                font-weight: bolder;
+                font-size: 40px;
+                margin-left: 10px;
+                margin-top: -10px;
+                display: block;
+                margin-top: -54px;
+                margin-left: 65px;
+            }
+            .left-main-content{
+              height: 90%;
+            }
+            .content{
+                width: 70%;
+                height: 70%;
+                margin: 100px auto;
+            }
+            .content p:nth-child(1){
+                font-size: 50px;
+                font-weight: bolder;
+                color:white;
+                margin: 0 !important;
+            
+            }
+            .content p:nth-child(2){
+                color:white;
+                font-size: 20px;
+            }
+            .content  button{
+               width: 150px;
+               height: 40px;
+               border: none;
+               cursor: pointer;
+               font-size: 16px;
+            }
+            .content div button:nth-child(1){
+                background-color: #FF4F5A;
+                color:white;
+            }
+            .content div button:nth-child(2){
+                background-color: white;
+                color:black;
+                margin-left: 5px;
+            }
+            .content div button:nth-child(1):hover{
+                background-color: #343a40;
+                border: 1px solid #FF4F5A;
+                color: #FF4F5A;
+            }
+            .content div button:nth-child(2):hover{
+                background-color: #343a40;
+                color: white;
+                border: 1px solid white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <section class="first">
+                <div class="left">
+                    <div class="header">
+                        <img src="images/logo.png"/>
+                        <span>Spering</span>
+                    </div>
+                    <div class="left-main-content">
+                        <div class="content">
+                            <p>You can <br>Hire Freelancer<br>Here</p>
+                            <p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
+                            <div>
+                                <button>About Us</button>
+                                <button>Get A Quote</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="right"></div>
+            </section>
+        </div>
+    </body>
+</html>
