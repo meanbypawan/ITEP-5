@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <!-- 
+            position :-
+              a. relative
+              b. absolute
+              c. fixed  
+         -->
+         <style>
+            .container{
+                width: 100%;
+                height: 200px;
+                border: 1px solid black;
+            }
+            .container div{
+                width: 50px;
+                height: 50px;
+                border: 1px solid red;
+                display: inline-block;
+            }
+            .container div:nth-child(5){
+                position: relative;
+                top:20px;
+                left: 20px;
+            }
+            .container div:nth-child(9){
+                position: absolute;
+                top: 20px;
+                left: 20px;
+            }
+            .container div:nth-child(10){
+                position: fixed;
+                bottom: 20px;
+                right: 10px;
+            }
+         </style>
+    </head>
+    <body>
+      <div class="container">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+      </div>
+    </body>
+</html>

@@ -1,0 +1,211 @@
+ <html>
+    <head>
+        <style>
+         body{
+            margin: 0;  
+         }   
+         .main{
+            box-sizing: border-box;
+         }  
+         .header{
+            height: 70px;
+            display: flex;
+            
+         }
+         .left-header{
+            background-color: #1A2E35;
+            height: 100%;
+            width: 55%;
+            padding: 10px;
+            box-sizing: border-box;  
+            display: flex;  
+            align-items: center;
+            column-gap: 10px;
+         }
+         .left-header img{
+            width: 40px;
+            height: 40px;
+         }
+         .right-header{
+            width: 45%;
+            background-color: #1CBBB4; 
+         }
+         .left-header h1{
+            color:white;
+            font-size: 25px;
+         }
+         .second-section{
+            height: 600px;
+            display: flex;
+         }
+         .second-section div:nth-child(1){
+            width: 55%;
+            background-color: #1A2E35;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+         .second-section div:nth-child(1) div{
+             width: 70%;
+             height: 70%;
+             position: relative;
+         }
+          .second-section div:nth-child(2){
+            width: 45%;
+            background-color: #1CBBB4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         }
+         .left-content-div{
+            display: flex;
+            flex-direction: column;
+            align-items: start !important;
+            justify-content: center !important;
+            color: white;
+         }
+         .left-content-div h1{
+            font-size: 40px;
+         }
+         .left-content-div p{
+            font-size: 20px;
+            margin-top: 0;
+         }
+         .button-container{
+            height: auto !important;
+            margin-top: 20px;
+         }
+         .button-container button{
+            width: 150px;
+            height: 40px;
+            border: none;
+         }
+         .button-container button:nth-child(1){
+            background-color: #FF4F5A;
+            color: white;
+         }
+         .button-container button:nth-child(2){
+            background-color: #FFFFFF;
+            margin-left: 10px;
+         }
+         .button-container button:nth-child(1):hover{
+            background-color: transparent;
+            border: 1px solid #FF4F5A;
+            color: #FF4F5A;
+         }
+         .button-container button:nth-child(2):hover{
+            background-color: transparent;
+            border: 1px solid #FFFFFF;
+            color:white;
+         }
+         .right-content-div img{
+           width: 70%;
+           height: 70%;
+         }
+         .arrow-button-container{
+           width: 250px !important;
+           height: 100px !important;
+           position: absolute !important;
+           bottom: -50px;
+           left: 110px;
+           background-color: transparent !important;
+           display: flex;
+           justify-content: start !important;
+           align-items: center !important;
+           column-gap: 10px;
+         }
+         .arrow-button-container span{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color:white;
+            font-weight: bolder;
+            background-color: #1CBBB4;
+         }
+         .third-section{
+            width: 100%;
+            height: 500px;
+            display: flex;
+            box-sizing: border-box;
+         }
+         .third-section div:nth-child(1){
+            width: 45%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         }
+         .third-section div:nth-child(1) img{
+            width: 70%;
+            height: 75%;
+         }
+         .third-section div:nth-child(2){
+            width: 55%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+         }
+         .third-section div:nth-child(2) h1{
+            font-size: 30px;
+         }
+         .third-section div:nth-child(2) p{
+            font-size: 18px;
+            font-family: poppins, sans-serif;
+         }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+           <section class="first-section">
+             <div class="header">
+                <div class="left-header">
+                    <img src="./images/logo.png"/>
+                    <h1>Spering</h1>
+                </div>
+                <div class="right-header"></div>
+             </div>
+           </section>
+           <section class="second-section">
+            <div>
+              <div class="left-content-div">
+                <h1>You can <br> Hire Freelancer <br> Here</h1>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
+                <div class="button-container">
+                    <button>About us</button>
+                    <button>Get a quote</button>
+                </div>
+              </div>
+              <div class="arrow-button-container">
+                <span><-</span>
+                <span>-></span>
+              </div>
+             </div>
+            <div class="right-content-div">
+                <img src="./images/slider-img.png"/>
+            </div>
+            
+           </section>   
+           <section class="third-section">
+             <div>
+                <img src="./images/experience-img.jpg"/>
+             </div>
+             <div>
+                <h1>BEST EXPERINCED FREELANCER HERE</h1>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as</p>
+                <div class="button-container">
+                    <button>Read more</button>
+                    <button style="border: 1px solid #1A2E35; background-color: #1A2E35; color:white;">Hire</button>
+                </div>
+             </div>
+           </section>          
+        </div>
+    </body>
+ </html>       
