@@ -77,12 +77,12 @@
             height: auto !important;
             margin-top: 20px;
          }
-         .button-container button{
+         .button-container button,.fifth-section button{
             width: 150px;
             height: 40px;
             border: none;
          }
-         .button-container button:nth-child(1){
+         .button-container button:nth-child(1),.fifth-section button{
             background-color: #FF4F5A;
             color: white;
          }
@@ -90,7 +90,7 @@
             background-color: #FFFFFF;
             margin-left: 10px;
          }
-         .button-container button:nth-child(1):hover{
+         .button-container button:nth-child(1):hover,.fifth-section button:hover{
             background-color: transparent;
             border: 1px solid #FF4F5A;
             color: #FF4F5A;
@@ -160,6 +160,123 @@
             font-size: 18px;
             font-family: poppins, sans-serif;
          }
+         .fourth-section{
+            background-color: #1CBBB4;
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+         }
+         .fourth-section h1{
+            text-align: center;
+            color: white;
+            text-transform: uppercase;
+            font-size: 30px;
+            position: relative;
+            top: 25px;
+         }
+         .fourth-section h1::after{
+            content: "";
+            width: 166px;
+            height: 2px;
+            position: absolute;
+            background-color: white;
+            bottom: -8px;
+            left: 43.6%;
+         }
+         .first-row,.second-row{
+            height: 180px;
+            display: flex;
+            
+            justify-content: space-around;
+            align-items: center;
+         }
+         .first-row div,.second-row div{
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+            color: white;
+            align-items: center;
+         }
+         .first-row div img, .second-row div img{
+            width: 100px;
+            height: 100px;
+         }
+         .first-row div span, .second-row div span{
+            font-size: 20px;
+         }
+         .fifth-section{
+            width: 100%;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+         }
+         .fifth-section img{
+            width: 60%;
+            height: 600px;
+            margin-top: 100px;
+         }
+         .fifth-section h1{
+             font-size: 30px;
+         }
+         .fifth-section p{
+            width: 90%;
+            font-size: 18px;
+            font-family: poppins, sans-serif;
+         }
+         .sixth-section{
+            height: 600px;
+            display: flex;
+            margin-top: 30px;
+         }
+         .sixth-section div{
+            width: 50%;
+            height: 100%;
+         }
+         .sixth-section div:nth-child(2){
+            display: flex;
+            align-items: center;
+         }
+         .sixth-section div:nth-child(1){
+            display: flex;
+            justify-content: center;
+         }
+         .sixth-section-inner-left{
+            width: 75% !important;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly !important;
+         }
+         .sixth-section-inner-left h1{
+            font-size: 30px;
+         }
+         .sixth-section-inner-left div{
+            width: 100%;
+            height: 16%;
+            display: flex;
+            flex-direction: row;
+         }
+         .sixth-section-inner-left div div:nth-child(1){
+            width: 20%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #1CBBB4;
+            display: flex;
+            align-items: center;
+         }
+         .sixth-section-inner-left div div:nth-child(2){
+            width: 80%;
+            height: 100%;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: start;
+            justify-content: space-evenly;
+            padding-left: 10px;
+         }
         </style>
     </head>
     <body>
@@ -205,7 +322,91 @@
                     <button style="border: 1px solid #1A2E35; background-color: #1A2E35; color:white;">Hire</button>
                 </div>
              </div>
-           </section>          
+           </section>     
+           <section class="fourth-section">
+              <h1>Category</h1>
+              <div class="first-row">
+                <div>
+                    <img src="./images/c1.png"/>
+                    <span>Design & Arts</span>
+                </div>
+                <div>
+                    <img src="./images/c2.png"/>
+                    <span>Design & Arts</span>
+                </div>
+                <div>
+                    <img src="./images/c3.png"/>
+                    <span>Design & Arts</span>
+                </div>
+              </div>
+              <div class="second-row">
+                <div>
+                    <img src="./images/c4.png"/>
+                    <span>Design & Arts</span>
+                </div>
+                <div>
+                    <img src="./images/c5.png"/>
+                    <span>Design & Arts</span>
+                </div>
+                <div>
+                    <img src="./images/c6.png"/>
+                    <span>Design & Arts</span>
+                </div>
+            
+              </div>
+           </section>    
+           <section class="fifth-section">
+             <img src="./images/about-img.jpg"/>
+             <h1>ABOUT SPERING COMPANY</h1>
+             <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If youThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you</p>
+             <button style="font-size: 16px;">Read More</button>
+           </section>
+           <section class="sixth-section">
+                <div>
+                    <div class="sixth-section-inner-left">
+                        <h1>WORK FREELANER HAS DONE</h1>
+                        <div>
+                            <div>
+                                <img src="./images/f1.png" width="50%" height="50%"/>
+                            </div>
+                            <div>
+                                <h3 style="margin:0; padding: 0;color: #FF4F5A;">$250 Million</h3>
+                                <p style="font-size:25px;font-weight: bold ;padding: 0; margin: 0;">Paid to Freelancers</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="background-color: #1A2E35;">
+                                <img src="./images/f2.png" width="50%" height="50%"/>
+                            </div>
+                            <div>
+                                <h3 style="margin:0; padding: 0;color: #FF4F5A;">$250 Million</h3>
+                                <p style="font-size:25px;font-weight: bold ;padding: 0; margin: 0;">Paid to Freelancers</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="background-color: #1A2E35;">
+                                <img src="./images/f3.png" width="50%" height="50%"/>
+                            </div>
+                            <div>
+                                <h3 style="margin:0; padding: 0;color: #FF4F5A;">$250 Million</h3>
+                                <p style="font-size:25px;font-weight: bold ;padding: 0; margin: 0;">Paid to Freelancers</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="background-color: #1A2E35;">
+                                <img src="./images/f4.png" width="50%" height="50%"/>
+                            </div>
+                            <div>
+                                <h3 style="margin:0; padding: 0;color: #FF4F5A;">$250 Million</h3>
+                                <p style="font-size:25px;font-weight: bold ;padding: 0; margin: 0;">Paid to Freelancers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img src="./images/freelance-img.jpg" width="90%"/>
+                </div>
+           </section> 
         </div>
     </body>
  </html>       

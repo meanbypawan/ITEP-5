@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <style>
+            .first{
+                width: 100px;
+                height: 100px;
+                background-color: brown;
+                animation-name: div-motion;
+                animation-duration: 5s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+                animation-timing-function: ease-in-out;
+            }
+            @keyframes div-motion {
+                0%{
+                    transform: translateX(0);
+                    background-color: red;
+                }
+                10%{
+                    background-color: yellow;
+                    border-radius: 5%;
+                }
+                25%{
+                    background-color: green;
+                    border-radius: 10%;
+                }
+                50%{
+                    background-color: blue;
+                    border-radius: 25%;
+                }
+                75%{
+                    background-color: orangered;
+                    border-radius: 40%;
+                }
+                100%{
+                    background-color: pink;
+                    transform: translateX(1000%);
+                    border-radius: 50%;
+                }
+            }
+            /* @keyframes div-motion{
+                from{
+                  transform: translateX(0%);
+                  border-radius: 0;
+                }
+                to{
+                 transform: translateX(1000%);
+                 border-radius: 50%;
+                }
+            } */
+            h1{
+                text-align: center;
+                margin-top: 100px;
+                animation-name: text-animation;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+            }
+
+            @keyframes text-animation {
+                0%{
+                    color: red;
+                    transform: translateY(0),rotate(0deg);
+                }         
+
+                35%{
+                    color: mediumseagreen;
+                }
+
+                75%{
+                    color: brown;
+                }
+
+                100%{
+                    color: burlywood;
+                    transform: rotate(-180deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="first"></div>
+        <h1>InfoBeans Foundation</h1>
+    </body>
+</html>

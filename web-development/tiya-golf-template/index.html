@@ -1,0 +1,290 @@
+<html>
+   <head>
+     <style>
+        body{
+            margin:0;
+            font-family: sans-serif;
+        }
+        .header{
+            height: 100px;
+            background-color: #3C405B;
+            display: flex;
+        }
+        .logo{
+            width: 30%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .logo img{
+            width: 60px;
+            height: 60px;
+            filter: invert(1);
+            position: absolute;
+            left: 70px;
+        }
+        .logo-text{
+            width: 80px;
+            height: 50px;
+            position: absolute;
+            left: 130px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-text h1{
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .navigation{
+            width: 70%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            column-gap: 50px;
+        }
+        .navigation ul{
+            list-style: none;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            column-gap: 50px;
+            color: white;
+            font-size: 16px;
+        }
+        .navigation ul li{
+            display: inline-block;
+        }
+        .navigation button{
+            width: 150px;
+            height: 40px;
+            background-color: transparent;
+            border: 2px solid #f2cc8f;
+            color: #f2cc8f;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+        .navigation ul li ul{
+            background-color: transparent;
+            position: absolute;
+            top:60px;
+            display: none;
+            flex-direction: column !important;
+            padding-left: 0;
+            align-items: start !important;
+            height: 200px;
+            color: black;
+
+        }
+        .navigation ul li ul li{
+            background-color: red;
+            width: 150px;
+            padding: 10px;
+        }
+        .navigation ul li ul li:nth-child(1){
+            margin-top: 40px;
+        }
+        .navigation ul li:nth-child(6):hover ul{
+          display: block;
+        }
+        .banner{
+            height: 550px;
+            position: relative;
+        }
+        .container-text{
+            height: 480px;
+            background-color: #3C405B;
+            position: absolute;
+            width: 100%;
+            z-index: -2;
+            top: 20px;
+        }
+        .container-text img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+        }
+        .banner svg:nth-child(1){
+            position: absolute;
+            top: -60px;
+            z-index: -1;
+        }
+        .banner svg:nth-child(3){
+            position: absolute;
+            bottom: 0;
+        }
+        .tiya-text{
+            width: 400px;
+            height: 200px;
+            
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+        .tiya-text h2{
+            font-size: 30px;
+            margin: 0;
+            color: white;
+        }
+        .tiya-text h1{
+            font-size: 35px;
+            margin: 15px 0;
+            color: white; 
+        }
+        .tiya-text button{
+            background-color: #f2cc8f;
+            color: white;
+            padding: 10px;
+            border: none;
+            font-size: 16px;
+            border-radius: 25px;
+        }
+        .tiya-text label{
+            color:white;
+            margin-left: 20px;
+        }
+        .tiya-text h1 span{
+            color: #f2cc8f;
+        }
+        .about-tiya h1{
+            text-align: center;
+        }
+        .about-tiya-container{
+            width: 90%;
+            display: flex;
+            height: 300px;
+            border: 1px solid red;
+            margin: auto;
+        }
+        .left{
+            height: 100%;
+            border: 1px solid blue;
+            width: 40%;
+        }
+        .right{
+            width: 60%;
+            display: flex;
+            align-items: center;
+        }
+        .left h1{
+            text-align: left !important;
+        }
+        .left p{
+            font-size: 18px;
+            color: gray;
+        }
+        .img-container{
+            width: 300px;
+            height: 250px;
+        }
+
+        .img-container div:nth-child(1){
+            width: 100%;
+            height: 200px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .img-container img{
+            width: 100%;
+            height: 200px;
+            position: absolute;
+            transition: all 0.5s ease-in-out;
+        }
+        .img-container-label{
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            align-items: center;
+        }
+        .img-container-label small:nth-child(1){
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .img-container div:nth-child(1) img:hover + .option{
+            display: block;
+        }
+        .img-container div:nth-child(1) img:hover{
+            transform: scale(1.1);
+        }
+        .option{
+            width: 150px;
+            height: 60px;
+            background-color: red;
+            position: absolute;
+            border-radius: 25px;
+            display: none;
+        }
+     </style>
+   </head>
+   <body>
+      <section class="header">
+        <div class="logo">
+            <img src="./images/logo.png"/>  
+            <div class="logo-text">
+                <h1>Tiya</h1>
+                <small>GOLF CLUB</small>
+            </div>
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Membership</li>
+                <li>Events</li>
+                <li>Contact Us</li>
+                <li>Pages &nbsp; &#9662;
+                    <ul>
+                        <li>Event Listening</li>
+                        <li>Event Details</li>
+                    </ul>
+                </li>
+            </ul>
+            <button>Member Login</button>
+        </nav>
+      </section>
+      <section class="banner">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3D405B" fill-opacity="1" d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path></svg>
+        <div class="container-text">
+            <img src="./images/anna-rosar-ZxFyVBHMK-c-unsplash.jpg"/>
+            <div class="tiya-text">
+                <h2>Welcome to the club</h2>
+                <h1>Tiya is <span>Creative</span></h1>
+                <button>Out story</button>
+                <label>Become a member</label>
+            </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FFFFFF" fill-opacity="1" d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
+      </section>
+      <section class="about-tiya">
+        <h1>About tiya</h1>
+        <div class="about-tiya-container">
+            <div class="left">
+                <h1>Tiya Club History</h1>
+                <p>Since 1984, Tiya is ranked #8 in the top 10 golf courses in the world. Tiya is Bootstrap 5 HTML CSS template for golf clubs. Anyone can modify and use this layout for commercial purposes.</p>
+                <p>Tiya Golf Club is 100% free CSS template provided by TemplateMo website. Please tell your friends about our website. Thank you for visiting.</p>
+            </div>
+            <div class="right">
+                <div class="img-container">
+                    <div>
+                      <img src="./images/members/portrait-young-handsome-businessman-wearing-suit-standing-with-crossed-arms-with-isolated-studio-white-background.jpg"/>
+                      <div class="option"></div>
+                    </div>
+                    <div class="img-container-label">
+                        <small>Micheal</small>
+                        <small>Founder</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+   </body>
+</html>
