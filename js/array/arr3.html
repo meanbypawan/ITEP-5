@@ -1,0 +1,17 @@
+<script>
+    //         0,1, 2 , 3
+    var arr = [10,20,40,30];
+    
+    // splice as add
+    arr.splice(2,0,1000,2000,3000,5000);
+    document.write("<br>"+arr);
+
+    // spice as remove
+    arr.splice(3,2);
+    document.write("<br>"+arr);
+    
+    // splice as add and remove
+
+    arr.splice(2,3,100,200,300,"Hello",true);
+    document.write("<br>"+arr);
+</script>

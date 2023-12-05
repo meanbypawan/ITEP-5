@@ -1,0 +1,17 @@
+<script>
+    /*
+      Object In JS
+    */
+   var customer = {id:100, cname:"ABC", mobile:"9009111222", age: 24};
+  
+   document.write(customer.id+"  "+customer.cname+" "+customer.mobile+" "+customer.age+"<br>");
+   
+   customer.accountNumber = "abc10001233";
+   
+   document.write(customer.id+"  "+customer.cname+" "+customer.mobile+" "+customer.age+" "+customer.accountNumber);
+   
+   delete customer.cname;
+   document.write("<br>"+customer.id+"  "+customer.cname+" "+customer.mobile+" "+customer.age+" "+customer.accountNumber);
+   
+   console.log(customer);
+</script>
