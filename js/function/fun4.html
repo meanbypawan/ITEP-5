@@ -1,0 +1,16 @@
+<script>
+    function f1(a,b,c){
+       document.write("<br>a : "+a);
+       document.write("<br>b : "+b);
+       //document.write("<br>c : "+c);
+       c();
+    }
+
+    var x = 20;
+    var y = "hello";
+    var z = function(){
+       document.write("<br> Function executed,,,,");
+    };
+
+    f1(x,y,z);
+</script>

@@ -1,0 +1,17 @@
+<script>
+    function addition(a,b,callback){
+       if(typeof(a) != "number" || typeof(b) != "number"){
+          callback(new Error("Invalid Input"));
+       }
+       else{
+        var c = a + b;
+        document.write("<br>Addition : "+c);
+        callback(null,c);
+       }
+    }
+
+
+    addition(20,"11",function(err,result){
+       err ? document.write(err) : result%2 ? document.write("<br>ODD") : document.write("<br>EVENT");
+    });
+</script>

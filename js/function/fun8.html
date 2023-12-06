@@ -1,0 +1,14 @@
+<script>
+    function addition(callback,callbackTwo){
+        var a = prompt("Enter 1st value")*1;
+        var b = prompt("Enter 2nd value")*1;
+        callback(a,b);
+        callbackTwo(a,b);
+    }
+
+    addition(function(a,b){
+       document.write("<br>Addition : "+(a+b));
+    },function(a,b){
+        document.write("<br>Subtraction : "+(a-b));
+    });
+</script>
