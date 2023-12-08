@@ -1,0 +1,28 @@
+<script>
+    /*
+      Airhtmetic :
+        properties : a,b
+        behavo:---add(),sub().mult()
+    
+       class Arithemtic{
+          int a,b;
+          Arithmetic(int a, int b){
+            this.a = a;
+            this.b = b;
+          }
+          public void add(){}
+          public void sub(){}
+          public void mutl(){}
+       }
+    */
+     function Airthmetic(){
+        this.a = 20;
+        this.b = 10;
+        this.add = function(){
+            document.write("<br>Addition : "+(this.a + this.b));
+        }
+     }
+
+     var obj = new Airthmetic(); // obj:{a:20,b:10, add:}
+     obj.add();
+</script>

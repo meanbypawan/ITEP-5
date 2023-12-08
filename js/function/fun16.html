@@ -1,0 +1,12 @@
+<script>
+    function f1(x){
+        console.log("F1-executed....");
+        return function f2(y){
+            console.log("F2-executed...")
+            console.log("x : "+x+" y : "+y);
+        }
+    }
+
+    var f2 = f1(100);
+    f2(200);
+</script>

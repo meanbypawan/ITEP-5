@@ -1,0 +1,28 @@
+<script>
+    // Message : m1(),m2(),m3()
+    function Message(){
+        this.m1 = function(){
+            document.write("m1-executed....");
+        }
+
+        this.m2 = function(){
+            document.write("m2-executed.....");
+        }
+
+        this.m3 = function(){
+            document.write("m3-executed.....");
+            wish();
+        }
+
+        var wish = function(){ // private
+            document.write("<br>Hello....");
+        }
+    }
+
+
+    var obj = new Message(); // obj: {}
+    obj.m1();
+    obj.m2();
+    obj.m3();
+    
+</script>

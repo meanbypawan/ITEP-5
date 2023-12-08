@@ -1,0 +1,24 @@
+<script>
+    /*
+      Customer :- 
+        properties : id,cname,age,mobile
+        behavoiurs:- withdrawal(), deposite(), balanceEnquiry()
+    */
+
+   var customer = {
+    id:100, 
+    cname: "ABC",
+    age: 24, 
+    mobile:"9009111222",
+    bal: 50000,
+    withdrawal: function(amount){
+       this.bal -= amount;
+       document.write("<br>Withdrawal Success : "+this.bal);
+    },
+    wish: function(){
+        document.write("Hello....");
+    }
+   };
+
+   customer.withdrawal(5000);
+</script>

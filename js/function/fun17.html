@@ -1,0 +1,21 @@
+<script>
+    function f1(x){
+        return function f2(y){
+            return function f3(z){
+                console.log("x : "+x);
+                console.log("Y : "+y);
+                console.log("z : "+z);
+                return x * y * z;
+            }
+        }
+    }
+
+    var result = f1(2)(3)(4);  // currying in js
+    console.log(result);
+    /*
+    var f2 = f1(2);
+    var f3 = f2(3);
+    f3(4);
+    console.log("At the end...");
+    */
+</script>

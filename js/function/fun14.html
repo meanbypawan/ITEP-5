@@ -1,0 +1,12 @@
+<script>
+    function f1(arr,callback){
+      callback(arr);
+    }
+    
+    var arr = [1,2,3,4,5]
+    
+    f1(arr,function(x){
+        for(var element of x)
+         document.write("<br>"+element);
+    });
+</script>

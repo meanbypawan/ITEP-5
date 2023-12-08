@@ -1,0 +1,33 @@
+<script>
+    /*
+      Closure :- 
+
+      Advantages of using closure :-
+        1. Javascript currying
+        2. Data encapsulation
+    */
+
+   function DataEncapsulation(){
+      this.data = 10000;
+      this.f1 = function(){
+        console.log("Inside F1 : "+this.data);
+      }
+      this.f2 = function(){
+        console.log("Inside F2 : "+this.data);
+      }
+      this.increment = function(){
+        this.data++;
+      }
+      this.decrement = function(){
+        this.data--;
+      }
+   }
+
+   var obj = new DataEncapsulation();
+   obj.increment();
+   obj.increment();
+   obj.increment();
+   obj.f1();
+   obj.decrement();
+   obj.f2();
+</script>
