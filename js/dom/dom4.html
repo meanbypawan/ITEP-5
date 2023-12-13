@@ -1,0 +1,35 @@
+<html>
+    <!-- 
+        onclick
+        ondblclick
+        onmouseover
+        onblur
+        onchange
+        --
+        --
+     -->
+    <body>
+         <center>
+            <img id="main" src="images/shoes.jpg" width="400px" height="400px"/>
+            <br/><br/>
+            <img id="first"  onclick="changeImage('first')" src="images/adidas-shoes.jpeg" width="100px" height="100px"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <img id="second" onclick="changeImage('second')" src="images/bata-shoes1.jpeg" width="100px" height="100px"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <img  id="third" onclick="changeImage('third')"src="images/batablackred.jpeg" width="100px" height="100px"/>&nbsp;&nbsp;&nbsp;&nbsp;
+        </center>
+        <script>
+            function changeImage(currentImageObjectId){
+               var currentImage = document.getElementById(currentImageObjectId);
+               var mainImage = document.getElementById("main");
+
+               var temp = mainImage.src;
+               mainImage.src = currentImage.src;
+               currentImage.src = temp;
+            }
+        </script>
+    </body>
+</html>
+
+
+
+
+

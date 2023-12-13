@@ -1,0 +1,38 @@
+<html>
+    <!-- 
+        onclick
+        ondblclick
+        onmouseover
+        onblur
+        onchange
+        --
+        --
+     -->
+    <body>
+         <center>
+            <img id="main" src="images/shoes.jpg" width="100px" height="100px"/>
+            <br/>
+            <button onclick="incrementSize()">+</button>
+            <button onclick="decrementSize()">-</button>
+        </center>
+        <script>
+            function incrementSize(){
+                var imageObj = document.getElementById("main");
+                imageObj.width += 20;
+                imageObj.height += 20; 
+            }
+
+            function decrementSize(){
+                var imageObj = document.getElementById("main");
+                imageObj.width -= 20;
+                imageObj.height -= 20; 
+            
+            }
+        </script>
+    </body>
+</html>
+
+
+
+
+

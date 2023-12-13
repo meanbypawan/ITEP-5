@@ -1,0 +1,29 @@
+<script>
+
+    console.log("At the start......");
+    // 5 min
+    var roomCleaning = (callback)=>{
+        setTimeout(()=>{
+            console.log("Room Cleaned....");
+            callback();
+        },5000);
+    }  
+
+    // 2 min
+    var removingGarbage = (callback)=>{
+        setTimeout(()=>{
+            console.log("Garbaged Removed....");
+            callback("got a ice-cream");
+        },2000);
+    }
+
+    var winningPize = (status)=>{
+        console.log(status);
+    } // ice-cream
+    roomCleaning(()=>{
+        removingGarbage((status)=>{
+            winningPize(status);
+        });
+    });
+    console.log("At the end......");
+</script> 

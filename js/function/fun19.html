@@ -1,0 +1,22 @@
+<script>
+    /*
+      setTimeout(callback,timer){
+        var i=1;
+        while(i<=2000){
+            i++
+        }
+        callback();
+      }
+    */
+    console.log("At the start...");
+
+    setTimeout(()=>{
+        console.log("Task -1 executed....");
+    },5000);
+    // N/w call (API call)
+    setTimeout(()=>{
+        console.log("Task 2 executed....");
+    },3000);
+
+    console.log("At the end....");
+</script>

@@ -1,0 +1,37 @@
+<html>
+    <!-- 
+        onclick
+        ondblclick
+        onmouseover
+        onblur
+        onchange
+        --
+        --
+     -->
+    <body>
+         <center>
+            <img id="main" src="images/shoes.jpg" width="100px" height="100px"/>
+            <br/>
+            <button onclick="changeImageSize(1)">+</button>
+            <button onclick="changeImageSize(0)">-</button>
+        </center>
+        <script>
+            function changeImageSize(n){
+               var imageObj = document.getElementById("main");
+               if(n){
+                 imageObj.width += 20;
+                 imageObj.height += 20;
+               }
+               else{
+                 imageObj.width  -= 20;
+                 imageObj.height -= 20;
+               }
+            }
+        </script>
+    </body>
+</html>
+
+
+
+
+

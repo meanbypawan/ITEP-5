@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <input id="text" type="text"/>
+        <button onclick="displayText()">Click</button>
+        <p id="result"></p>
+        <script>
+
+            function displayText(){
+              var inputObject = document.getElementById("text");
+              var textValue = inputObject.value;
+
+              var paraObj = document.getElementById("result");
+              paraObj.innerHTML = textValue;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<html>
+    <head></head>
+    <body>
+        <button onclick="fillColor('red','blue')">RED-BLUE</button>
+        <button onclick="fillColor('green','yellow')">GREEN-YELLOW</button>
+        <button onclick="fillColor('orange','brown')">ORANGE-BROWN</button>
+        <br/><br/>
+        <table border="1" width='100%'>
+            <thead style="background-color: pink;">
+                <tr>
+                    <td>S.no</td>
+                    <td>Name</td>
+                    <td>Price</td>
+                    <td>Brand</td>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <tr>
+                    <td>1</td>
+                    <td>A</td>
+                    <td>10</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>B</td>
+                    <td>3000</td>
+                    <td>Z</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>C</td>
+                    <td>200</td>
+                    <td>Y</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>D</td>
+                    <td>70</td>
+                    <td>W</td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            function fillColor(eventRowColor, oddRowColor){
+               var tableBody =  document.getElementById("table-body");
+               for(var index in tableBody.rows){
+                  if(index%2)
+                    tableBody.rows[index].style.backgroundColor = oddRowColor;
+                  else
+                    tableBody.rows[index].style.backgroundColor=eventRowColor;
+               }
+            }
+        </script>
+    </body>
+</html>
