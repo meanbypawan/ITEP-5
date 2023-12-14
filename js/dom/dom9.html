@@ -1,0 +1,208 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <style>
+            small{
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="container mt-5">
+          <form>
+            <div class="form-group">
+                <label>Username</label>
+                <input onkeyup="validateUsername()" id="username" type="text" class="form-control"/>
+                <small id="usernameError"></small>
+            </div>
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input onkeyup="validatePassword()" id="password" type="password" class="form-control" placeholder="Enter password">
+                <div class="input-group-append">
+                  <button onclick="togglePassword(this)" class="btn btn-success" type="button">Show password</button>
+                </div>
+              </div>
+              <small id="passwordError"></small>
+            </div>
+            <div class="form-group">
+                <label>Mobile number</label>
+                <input onkeyup="validateMobile()" type="text" class="form-control" id="mobile"/>
+                <small id="mobileError"></small>
+            </div>
+            <div class="form-group">
+                <label>Email Id</label>
+                <input onkeyup="validateEmail()" type="email" class="form-control" id="email"/>
+                <small id="emailError"></small>
+            </div>
+            <div class="form-group">
+                <label>Qualification</label>
+                <select onchange="validateQualification()" class="form-control" id="qualification">
+                    <option value="0">select qualification</option>
+                    <option value="DR">Doctorate</option>
+                    <option value="PG">Post graduate</option>
+                    <option value="GRA">Gradudate</option>
+                    <option value="UG">Under graduate</option>
+                </select>
+                <small id="qualificationError"></small>
+            </div>
+            <div class="form-group">
+                Gender <br/>
+                Female <input name="gender" type="radio" id="rdFemale" onchange="validateGender()"/>
+                Male <input name="gender" type="radio" id="rdMale" onchange="validateGender()"/>
+                <small id="genderError"></small>
+            </div>
+            <div>
+                <button type="submit" onclick="return validateForm()" class="btn btn-success">Sign up</button>
+            </div>
+          </form>
+       </div>   
+       <script>
+          function validateGender(){
+            var status = true;
+            var female = document.querySelector("#rdFemale").checked;
+            var male = document.querySelector("#rdMale").checked;
+            var genderErrorIdWalaSmallTag = document.querySelector("#genderError");
+            if(female == false && male == false){
+                status = false;
+                genderErrorIdWalaSmallTag.innerHTML = "please select gender";
+            }
+            else
+              genderErrorIdWalaSmallTag.innerHTML = "";
+            return status;
+          }
+          function validateQualification(){
+            var status = true;
+            var qualification  = document.querySelector("#qualification").value;
+            var qulificationError = document.querySelector("#qualificationError");
+            if(qualification == "0"){
+                qulificationError.innerHTML = "please select qualification";
+                status = false;
+            }
+            else
+             qulificationError.innerHTML = "";
+            return status;
+          }
+          function validateEmail(){
+            var status = true;
+            var email = document.getElementById("email").value;
+            var emailError = document.getElementById("emailError");
+            if(email.length == 0){
+                status = false;
+                emailError.innerHTML = "Email id is required";
+            }
+            else{
+               let atTheRateIndex =  email.indexOf("@");
+               if(atTheRateIndex == -1){
+                status = false;
+                emailError.innerHTML  = "Invalid email (@ not present)";
+                return status;
+               }
+               let lastIndexOfAtTheRate = email.lastIndexOf("@");
+               if(atTheRateIndex != lastIndexOfAtTheRate){
+                  status = false;
+                  emailError.innerHTML = "Invalid email ( 2 @ present)";
+                  return status;
+               }
+
+               let stringAfterAtTheRate = email.substring(atTheRateIndex);
+               let dotIndex = stringAfterAtTheRate.lastIndexOf(".");
+               if(dotIndex == -1){
+                status = false;
+                emailError.innerHTML = "Invalid email ( . not present)";
+                return status;
+               }
+
+               let domainString = stringAfterAtTheRate.substring(dotIndex);
+               if( !(domainString == ".in" || domainString == ".com")){
+                status = false;
+                emailError.innerHTML = "Invalid email ( .in or .com not present)";
+                return status;
+               }
+
+               if(email.charAt(0) == '@'){
+                 status = false;
+                 emailError.innerHTML = "Invalid email ( starting with @)";
+                 return status;
+               }
+
+               emailError.innerHTML = "";
+            }
+            return status;
+          }
+          function validateMobile(){
+            var status = true;
+            var mobile = document.getElementById("mobile").value;
+            var mobileError = document.getElementById("mobileError");
+            if(mobile.length == 0){
+                status = false;
+                mobileError.innerHTML = "mobile is required";
+            }   
+            else if(isNaN(mobile)){
+                status = false;
+                mobileError.innerHTML = "Only digits are allowed";
+            }
+            else if(mobile.length!=10){
+                status = false;
+                mobileError.innerHTML = "Invalid mobile number";
+            }
+            else
+              mobileError.innerHTML = "";
+            return status;
+          }
+          function togglePassword(currentButtonObject){
+              var buttonText = currentButtonObject.innerText;
+              var passwordInput = document.getElementById("password");
+              if(buttonText == "Show password"){
+                passwordInput.type = "text";
+                currentButtonObject.innerText = "Hide password";
+              }
+              else if(buttonText == "Hide password"){
+                passwordInput.type = "password";
+                currentButtonObject.innerText = "Show password";
+               }
+          }
+          function validatePassword(){
+            var status = true;
+            var password = document.getElementById("password").value;
+            var passwordError = document.getElementById("passwordError");
+            if(password.length == 0){
+                status = false;
+                passwordError.innerHTML = "password is required";
+            }
+            else if(password.length < 6 || password.length > 10){
+                status = false;
+                passwordError.innerHTML = "password must be between 6 to 10";
+            }
+            else
+              passwordError.innerHTML = "";
+
+            return status;
+          }
+          function validateUsername(){
+             var status = true;
+             var username = document.getElementById("username").value;
+             var usernameError = document.getElementById("usernameError");
+
+             if(username.length == 0){
+                status = false;
+                usernameError.innerHTML = "username is required";
+                usernameError.style.color = "red";
+             }
+             else
+               usernameError.innerHTML = "";
+             return status;
+          }
+          function validateForm(){ 
+            var usernameStatus = validateUsername();
+            var passwordStatus = validatePassword();
+            var mobileStatus = validateMobile();
+            var emailStatus = validateEmail();
+            var qualificationStatus = validateQualification();
+            var genderStatus = validateGender();
+            if(usernameStatus && passwordStatus && mobileStatus && emailStatus && qualificationStatus && genderStatus)
+              return true;
+            return false;  
+          }
+       </script>
+    </body>
+</html>
