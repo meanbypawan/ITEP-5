@@ -1,0 +1,20 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+      <script src="./script.js"></script>
+      <style>
+        
+      </style> 
+    </head>
+    <body>
+     <div id="mainDiv">
+        <header></header>
+     </div>   
+     <script>
+        var data  = getProducts(); // data = [] --> data : "[]"
+        localStorage.setItem("productList",JSON.stringify(data));
+        CreateHeader();
+        createCart(data);
+     </script>
+    </body>
+</html>
