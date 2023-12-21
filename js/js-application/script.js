@@ -39,12 +39,19 @@ function CreateHeader(){
 
    var signInOptions = document.createElement("span");
    signInOptions.innerText = "Sign in";
-   signInOptions.setAttribute("style","color:white;");
+   signInOptions.setAttribute("style","color:white; cursor:pointer;");
 
+   signInOptions.addEventListener("click",()=>{
+    SignInComponent();
+   })
    var signUpOptions = document.createElement("span");
    signUpOptions.innerText = "Sign up";
-   signUpOptions.setAttribute("style","color:white;");
+   signUpOptions.setAttribute("style","color:white;cursor:pointer");
    
+   signUpOptions.addEventListener("click",()=>{
+      SignUpComponent();
+   });
+
    menuDiv.appendChild(signInOptions);
    menuDiv.appendChild(signUpOptions);
 
@@ -59,18 +66,163 @@ function createCart(data){
 
     var cartContainer  = document.createElement("div");
     cartContainer.setAttribute("class","container-fluid mt-5 p-2 d-flex flex-wrap justify-content-around");
-    cartContainer.setAttribute("style","border:1px solid black; row-gap:10px;");
+    cartContainer.setAttribute("style","row-gap:10px;");
+    cartContainer.setAttribute("id","cart-container");
     
     for(var product of data){
        var cartDiv = document.createElement("div");
-       cartDiv.setAttribute("style","width:30%; height:400px; border:1px solid black");       
+       cartDiv.setAttribute("style","width:30%; height:430px; box-shadow: 10px 10px 10px grey;");      
+       cartDiv.setAttribute("class","d-flex flex-column align-items-center") 
        var productImg = document.createElement("img");
        productImg.setAttribute("src",product.thumbnail);
        productImg.setAttribute("style","width:100%; height:300px;");
+
+       var h3 = document.createElement("h3");
+       h3.innerText = product.title;
+       h3.setAttribute("class","text-center");
+
+       var p = document.createElement("p");
+       p.innerHTML = "Price : <span class='text-success'>"+product.price+" Rs.</span>";
+       p.setAttribute("class","text-center");
+
+       var addToCart = document.createElement("button");
+       addToCart.innerText = "Add To Cart";
+       addToCart.setAttribute("style","width:90%; height:40px;")
+       addToCart.setAttribute("class","bg-dark text-white");
        cartDiv.appendChild(productImg);
-       
+       cartDiv.appendChild(h3);
+       cartDiv.appendChild(p);
+       cartDiv.appendChild(addToCart);
        cartContainer.appendChild(cartDiv);
     }
 
     mainDiv.appendChild(cartContainer);
+}
+function SignInComponent(){
+    var mainDiv = document.querySelector("#mainDiv");   
+   
+    mainDiv.innerHTML = "";
+ 
+    var container = document.createElement("div");
+    container.setAttribute("style","box-shadow:10px 10px 10px grey; padding:20px; width:30%; height: auto;  position:absolute; top:50%; left:50%; transform: translate(-50%,-50%)");
+     
+    var divFormGroupFirst = document.createElement("div");
+    divFormGroupFirst.setAttribute("class","form-group");
+    var emailInput = document.createElement("input");
+    emailInput.setAttribute("class","form-control");
+    emailInput.setAttribute("placeholder","Enter email id");
+    emailInput.setAttribute("id","email");
+    divFormGroupFirst.appendChild(emailInput);
+    container.appendChild(divFormGroupFirst);
+ 
+    var divFormGroupSecond = document.createElement("div");
+    divFormGroupSecond.setAttribute("class","form-group");
+    var passwordInput = document.createElement("input");
+    passwordInput.setAttribute("class","form-control");
+    passwordInput.setAttribute("placeholder","Enter password");
+    passwordInput.setAttribute("id","password");
+
+    divFormGroupSecond.appendChild(passwordInput);
+    container.appendChild(divFormGroupSecond);
+  
+    var signInSubmitButton = document.createElement("button");
+    signInSubmitButton.setAttribute("class","btn btn-secondary mt-2");
+    signInSubmitButton.innerText = "Sign in";
+    
+    signInSubmitButton.addEventListener("click",()=>{
+        var email = document.querySelector("#email").value;
+        var password = document.querySelector("#password").value;
+        signIn(email,password);
+    })
+    var signUpLabel = document.createElement("span");
+    signUpLabel.innerText = "Create New Account";
+    signUpLabel.setAttribute("class","text-danger ml-5");
+    signUpLabel.setAttribute("role","button");
+    signUpLabel.addEventListener("click",()=>{
+        SignUpComponent();
+    }); 
+    container.appendChild(signInSubmitButton);
+    container.appendChild(signUpLabel);
+    mainDiv.appendChild(container); 
+}
+function SignUpComponent(){
+   var mainDiv = document.querySelector("#mainDiv");   
+   
+   mainDiv.innerHTML = "";
+
+   var container = document.createElement("div");
+   container.setAttribute("style","box-shadow:10px 10px 10px grey; padding:20px; width:30%; height: auto;  position:absolute; top:50%; left:50%; transform: translate(-50%,-50%)");
+    
+   var divFormGroupFirst = document.createElement("div");
+   divFormGroupFirst.setAttribute("class","form-group");
+   var emailInput = document.createElement("input");
+   emailInput.setAttribute("class","form-control");
+   emailInput.setAttribute("placeholder","Enter email id");
+   emailInput.setAttribute("id","email");
+   divFormGroupFirst.appendChild(emailInput);
+   container.appendChild(divFormGroupFirst);
+
+   var divFormGroupSecond = document.createElement("div");
+   divFormGroupSecond.setAttribute("class","form-group");
+   var passwordInput = document.createElement("input");
+   passwordInput.setAttribute("class","form-control");
+   passwordInput.setAttribute("placeholder","Enter password");
+   passwordInput.setAttribute("id","password");
+   divFormGroupSecond.appendChild(passwordInput);
+   container.appendChild(divFormGroupSecond);
+ 
+   var signUpSubmitButton = document.createElement("button");
+   signUpSubmitButton.setAttribute("class","btn btn-secondary mt-2");
+   signUpSubmitButton.innerText = "Sign up";
+   signUpSubmitButton.addEventListener("click",()=>{
+       var email = document.querySelector("#email").value;
+       var password = document.querySelector("#password").value;
+       if(isUserExist(email,password))
+        window.alert("User Already Exist..");
+       else{
+          var user = {email:email,password:password};
+          var userList =  JSON.parse(localStorage.getItem("userList"));
+          userList.push(user);
+          localStorage.setItem("userList",JSON.stringify(userList));
+          window.alert("User Registered Successfully");
+          SignInComponent();
+       } 
+   });
+
+   var signInLabel = document.createElement("span");
+    signInLabel.innerText = "Already have account";
+    signInLabel.setAttribute("class","text-danger ml-5");
+    signInLabel.setAttribute("role","button");
+    signInLabel.addEventListener("click",()=>{
+        SignInComponent();
+    }); 
+
+   container.appendChild(signUpSubmitButton);
+   container.appendChild(signInLabel);
+
+   mainDiv.appendChild(container);
+}
+
+function isUserExist(email,password){
+  console.log(email +"  "+password);  
+  var userList = localStorage.getItem("userList");
+  userList = JSON.parse(userList);
+  
+  var user = userList.find((user)=>{return user.email == email});
+  
+  console.log(user);
+  return !!user; // user : null | {}
+}
+
+function signIn(email,password){
+  
+  var userList = localStorage.getItem("userList");
+  userList = JSON.parse(userList);
+  
+  var user = userList.find((user)=>{return user.email == email && user.password == password});
+  
+  if(user)
+    window.alert("Sign in success...");
+  else
+    window.alert("Sign in Failed...");   
 }

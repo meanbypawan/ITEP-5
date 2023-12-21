@@ -8,11 +8,16 @@
     </head>
     <body>
      <div id="mainDiv">
-        <header></header>
+        <header id="header"></header>
      </div>   
      <script>
         var data  = getProducts(); // data = [] --> data : "[]"
         localStorage.setItem("productList",JSON.stringify(data));
+        
+        let isUserListExist = localStorage.getItem("userList");
+        console.log(isUserListExist);
+        (!isUserListExist) && localStorage.setItem("userList","[]");
+
         CreateHeader();
         createCart(data);
      </script>
