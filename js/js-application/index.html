@@ -20,6 +20,8 @@
 
         CreateHeader();
         createCart(data);
+        
+        (!localStorage.getItem("cartList")) && localStorage.setItem("cartList","[]");
      </script>
     </body>
 </html>

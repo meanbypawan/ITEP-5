@@ -36,25 +36,44 @@ function CreateHeader(){
    var menuDiv = document.createElement("div");
    menuDiv.setAttribute("style","width:20%; height:70px;");
    menuDiv.setAttribute("class","d-flex justify-content-around align-items-center");
+   if(isLoggedIn()){
+    var viewCart = document.createElement("span");
+    viewCart.innerText = "View Cart";
+    viewCart.setAttribute("style","color:white; cursor:pointer;");
 
-   var signInOptions = document.createElement("span");
-   signInOptions.innerText = "Sign in";
-   signInOptions.setAttribute("style","color:white; cursor:pointer;");
+    viewCart.addEventListener("click",()=>{
+    
+    });
+    var signOut = document.createElement("span");
+    signOut.innerText = "Sign out";
+    signOut.setAttribute("style","color:white;cursor:pointer");
+    
+    signOut.addEventListener("click",()=>{
+        SignOut(menuDiv);
+    });
 
-   signInOptions.addEventListener("click",()=>{
-    SignInComponent();
-   })
-   var signUpOptions = document.createElement("span");
-   signUpOptions.innerText = "Sign up";
-   signUpOptions.setAttribute("style","color:white;cursor:pointer");
-   
-   signUpOptions.addEventListener("click",()=>{
-      SignUpComponent();
-   });
+    menuDiv.appendChild(viewCart);
+    menuDiv.appendChild(signOut);
+   }
+   else{
+    var signInOptions = document.createElement("span");
+    signInOptions.innerText = "Sign in";
+    signInOptions.setAttribute("style","color:white; cursor:pointer;");
 
-   menuDiv.appendChild(signInOptions);
-   menuDiv.appendChild(signUpOptions);
+    signInOptions.addEventListener("click",()=>{
+        SignInComponent();
+    })
+    var signUpOptions = document.createElement("span");
+    signUpOptions.innerText = "Sign up";
+    signUpOptions.setAttribute("style","color:white;cursor:pointer");
+    
+    signUpOptions.addEventListener("click",()=>{
+        SignUpComponent();
+    });
 
+    menuDiv.appendChild(signInOptions);
+    menuDiv.appendChild(signUpOptions);
+   }
    header.appendChild(logoDiv);
    header.appendChild(searchDiv);
    header.appendChild(menuDiv);
@@ -69,7 +88,7 @@ function createCart(data){
     cartContainer.setAttribute("style","row-gap:10px;");
     cartContainer.setAttribute("id","cart-container");
     
-    for(var product of data){
+    for(let product of data){
        var cartDiv = document.createElement("div");
        cartDiv.setAttribute("style","width:30%; height:430px; box-shadow: 10px 10px 10px grey;");      
        cartDiv.setAttribute("class","d-flex flex-column align-items-center") 
@@ -89,6 +108,12 @@ function createCart(data){
        addToCart.innerText = "Add To Cart";
        addToCart.setAttribute("style","width:90%; height:40px;")
        addToCart.setAttribute("class","bg-dark text-white");
+       addToCart.addEventListener("click",()=>{
+          if(isLoggedIn())
+            saveProductInToCart(product);
+          else
+            window.alert("Sign in first");  
+       });
        cartDiv.appendChild(productImg);
        cartDiv.appendChild(h3);
        cartDiv.appendChild(p);
@@ -97,6 +122,35 @@ function createCart(data){
     }
 
     mainDiv.appendChild(cartContainer);
+}
+function saveProductInToCart(product){
+   var currentUser = sessionStorage.getItem("currentUser");
+   var cartList = JSON.parse(localStorage.getItem("cartList"));
+   let currentUserCartItems = cartList.find((obj)=>{return obj.email == currentUser});
+   if(currentUserCartItems){
+      var currentUserItemList = currentUserCartItems.cartItems;
+      var productObj = currentUserItemList.find((obj)=>{return obj.id == product.id});
+      console.log(productObj);
+      if(productObj)
+        window.alert("Product is already added into cart");
+      else{
+        var index = cartList.findIndex((obj)=>{return obj.email == currentUser});
+        product.qty = 1;
+        currentUserCartItems.cartItems.push(product);
+        cartList.splice(index,1);
+        cartList.push(currentUserCartItems);
+        localStorage.setItem("cartList",JSON.stringify(cartList));
+        window.alert("Product added successfully...");
+      }  
+   }
+   else{
+      var obj = {email: currentUser,cartItems: []};
+      product.qty = 1;
+      obj.cartItems.push(product);
+      cartList.push(obj);
+      localStorage.setItem("cartList",JSON.stringify(cartList)); 
+      window.alert("Prduct successfully added");
+   }
 }
 function SignInComponent(){
     var mainDiv = document.querySelector("#mainDiv");   
@@ -221,8 +275,37 @@ function signIn(email,password){
   
   var user = userList.find((user)=>{return user.email == email && user.password == password});
   
-  if(user)
-    window.alert("Sign in success...");
+  if(user){
+     sessionStorage.setItem("isLoggedIn","true");
+     sessionStorage.setItem("currentUser",user.email);
+     document.querySelector("#mainDiv").innerHTML = "";
+     CreateHeader();
+     createCart(JSON.parse(localStorage.getItem("productList")));
+  }
   else
     window.alert("Sign in Failed...");   
+}
+function isLoggedIn(){
+   return  !!sessionStorage.getItem("isLoggedIn"); // "true" / null
+}
+function SignOut(menuDiv){
+    sessionStorage.clear();
+    menuDiv.innerHTML = "";
+    var signInOptions = document.createElement("span");
+    signInOptions.innerText = "Sign in";
+    signInOptions.setAttribute("style","color:white; cursor:pointer;");
+
+    signInOptions.addEventListener("click",()=>{
+        SignInComponent();
+    })
+    var signUpOptions = document.createElement("span");
+    signUpOptions.innerText = "Sign up";
+    signUpOptions.setAttribute("style","color:white;cursor:pointer");
+    
+    signUpOptions.addEventListener("click",()=>{
+        SignUpComponent();
+    });
+
+    menuDiv.appendChild(signInOptions);
+    menuDiv.appendChild(signUpOptions);
 }
