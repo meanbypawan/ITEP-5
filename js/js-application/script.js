@@ -42,7 +42,108 @@ function CreateHeader(){
     viewCart.setAttribute("style","color:white; cursor:pointer;");
 
     viewCart.addEventListener("click",()=>{
+       var cartDiv = document.querySelector("#cart-container");
+       cartDiv.innerHTML = "";
+       var currentUser = sessionStorage.getItem("currentUser");
+       var cartList = JSON.parse(localStorage.getItem("cartList"));
+       var currentUserCartList = cartList.find((obj)=>{return obj.email == currentUser});
+       var cartItems = currentUserCartList.cartItems;
+       var container = document.createElement("div");
+       container.setAttribute("class","container mt-5");
+       
+       var rowDiv = document.createElement("div");
+       rowDiv.setAttribute("class","row");
+
+       var leftContainer = document.createElement("div");
+       leftContainer.setAttribute("class","col-md-8");
+       
+       // creating table in left container
+       var table = document.createElement("table");
+       table.setAttribute("class","table");
+
+       var thead = document.createElement("thead");
+       
+       var tr = document.createElement("tr");
+       var sNo = document.createElement("td");
+       sNo.innerText = "S.no";
+       tr.appendChild(sNo);
+       var name = document.createElement("td");
+       name.innerText = "Name";
+       tr.appendChild(name);
+       var price = document.createElement("td");
+       price.innerText = "Price";
+       tr.appendChild(price);
+       var qty = document.createElement("td");
+       qty.innerText = "Qty";
+       tr.appendChild(qty);
+       var total = document.createElement("td");
+       total.innerText = "Total";
+       tr.appendChild(total);
+
+       thead.appendChild(tr);
+       
+       var tbody = document.createElement("tbody");
+       for(var index in cartItems){
+            let tr = document.createElement("tr");
+            let sNo = document.createElement("td");
+            sNo.innerText = ""+(index*1+1);
+            tr.appendChild(sNo);
+
+            let name = document.createElement("td");
+            name.innerText = cartItems[index].title;
+            tr.appendChild(name);
+
+            let price = document.createElement("td");
+            price.innerText = cartItems[index].price;
+            tr.appendChild(price);
+
+            let qty = document.createElement("td");
+            qty.innerHTML = "<input onchange='updateQty("+cartItems[index].id+","+index+")' style='width:50px' id='qtyChange"+index+"' type='number' min='1' value='1'/>";
+            tr.appendChild(qty);
+            
+            let total = document.createElement("td");
+            total.setAttribute("id","total"+index);
+            total.innerText = cartItems[index].price;
+            tr.appendChild(total);
+            tbody.appendChild(tr);
+       }
+       
+       table.appendChild(thead);
+       table.appendChild(tbody);
+       leftContainer.appendChild(table);
+       
+       var rightContainer = document.createElement("div");
+       rightContainer.setAttribute("class","col-md-3 offset-1");
+
+       var h1 = document.createElement("h1");
+       h1.innerText = "Order Details";
+       h1.setAttribute("class","text-center");
+       var hr = document.createElement("hr");
     
+       var totalItems = document.createElement("p");
+       totalItems.innerHTML = "Total Items : "+cartItems.length; 
+      
+       var totalBillAmount = document.createElement("p");
+       totalBillAmount.setAttribute("id","totalBillLabel");
+       totalBillAmount.innerHTML = "Total Bill : "+getBillAmount();
+
+       var checkoutButton = document.createElement("button");
+       checkoutButton.innerText = "Checkout";
+       checkoutButton.setAttribute("class","btn btn-warning");
+       checkoutButton.setAttribute("style","width:90%; margin:auto;");
+
+       rightContainer.appendChild(h1);
+       rightContainer.appendChild(hr);
+       rightContainer.appendChild(totalItems);
+       rightContainer.appendChild(totalBillAmount);
+       rightContainer.appendChild(checkoutButton); 
+
+       rowDiv.appendChild(leftContainer);
+       rowDiv.appendChild(rightContainer);
+
+
+       container.appendChild(rowDiv);
+       cartDiv.appendChild(container);
     });
     var signOut = document.createElement("span");
     signOut.innerText = "Sign out";
@@ -308,4 +409,38 @@ function SignOut(menuDiv){
 
     menuDiv.appendChild(signInOptions);
     menuDiv.appendChild(signUpOptions);
+}
+
+function getBillAmount(){
+    var currentUser = sessionStorage.getItem("currentUser");
+    var cartList = JSON.parse(localStorage.getItem("cartList"));
+    var currentUserCartList = cartList.find((obj)=>{return obj.email == currentUser});
+    var cartItems = currentUserCartList.cartItems;
+    var totalBill = 0;
+    for(var product of cartItems){
+        totalBill = totalBill + product.price*1 * product.qty*1;
+    }
+    return totalBill;
+}
+
+function updateQty(productId,index){
+    var qty = document.querySelector("#qtyChange"+index).value;
+    var total = document.querySelector("#total"+index);
+ 
+    var currentUser = sessionStorage.getItem("currentUser");
+    var cartList = JSON.parse(localStorage.getItem("cartList"));
+    var currentUserCartList = cartList.find((obj)=>{return obj.email == currentUser});
+    var cartItems = currentUserCartList.cartItems;
+    
+    var productIndex = cartItems.findIndex((obj)=>{return obj.id == productId});
+    var product = cartItems[productIndex];
+    product.qty = qty;
+
+    cartItems.splice(productIndex,1);
+    cartItems.splice(productIndex,0,product);
+
+    total.innerText = ""+(product.price*1 * qty);
+    
+    var totalBillLabel = document.querySelector("#totalBillLabel");
+    totalBillLabel.innerHTML = "<p>Total Bill : "+getBillAmount()+"</p>";
 }
