@@ -31,6 +31,10 @@ function CreateHeader(){
    searchInput.setAttribute("type","text");
    searchInput.setAttribute("placeholder","Search product");
    searchInput.setAttribute("style","width:70%;height:40px;");
+   searchInput.setAttribute("id","searchKeyword");
+   searchInput.addEventListener("keyup",()=>{
+        SearchProduct();
+   });
    searchDiv.appendChild(searchInput);
      
    var menuDiv = document.createElement("div");
@@ -406,9 +410,12 @@ function SignOut(menuDiv){
     signUpOptions.addEventListener("click",()=>{
         SignUpComponent();
     });
-
+    
     menuDiv.appendChild(signInOptions);
     menuDiv.appendChild(signUpOptions);
+
+    document.querySelector("#cart-container").innerHTML = "";
+    createCart(JSON.parse(localStorage.getItem("productList")));
 }
 
 function getBillAmount(){
@@ -439,8 +446,40 @@ function updateQty(productId,index){
     cartItems.splice(productIndex,1);
     cartItems.splice(productIndex,0,product);
 
+    currentUserCartList.cartItems = cartItems;
+
+    var currentUserCartListIndex = cartList.findIndex((obj)=>{return obj.email == currentUser});
+    cartList.splice(currentUserCartListIndex,1);
+    cartList.splice(currentUserCartListIndex,0,currentUserCartList);
+    localStorage.setItem("cartList",JSON.stringify(cartList));
+
     total.innerText = ""+(product.price*1 * qty);
     
     var totalBillLabel = document.querySelector("#totalBillLabel");
     totalBillLabel.innerHTML = "<p>Total Bill : "+getBillAmount()+"</p>";
 }
+
+function SearchProduct(){
+    var keywords = document.querySelector("#searchKeyword").value;
+    var productList = JSON.parse(localStorage.getItem("productList"));
+    var filterData = productList.filter((product)=>{return product.title.toUpperCase().includes(keywords.toUpperCase())});
+    
+    document.querySelector("#cart-container").remove();
+    if(filterData.length == 0)
+      createCart(productList);
+    else
+      createCart(filterData);  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
