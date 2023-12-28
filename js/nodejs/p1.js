@@ -1,0 +1,37 @@
+/*
+  Promise :- 
+*/
+var first = (val, callback) => {
+    setTimeout(() => {
+        console.log("Inside Firt : " + val);
+        callback(val + 2);
+    }, 2000);
+}
+
+var second = (val, callback) => {
+    setTimeout(() => {
+        console.log("Inside Second : " + val);
+        callback(val + 2);
+    }, 3000);
+}
+
+var third = (val, callback) => {
+    setTimeout(() => {
+        console.log("Inside Third : " + val);
+        callback(val + 2);
+    }, 1000);
+}
+
+var fourth = (val) => {
+    setTimeout(() => {
+        console.log("Inside Fourth : " + val);
+    }, 1300);
+}
+// Pyramid of Doom
+first(10, (n) => {
+    second(n, (n) => {
+        third(n, (n) => {
+            fourth(n);
+        });
+    });
+});
