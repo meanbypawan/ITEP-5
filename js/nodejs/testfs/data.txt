@@ -1,0 +1,4 @@
+NodeJs application is asynchronous by default
+NodeJs is Single Threaded
+NodeJs is superfast
+nodejs is suitable for io intensive applicationNodeJs application is highly scalable..

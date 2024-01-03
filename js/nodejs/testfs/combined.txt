@@ -1,0 +1,2 @@
+It is first file data.
+It is second file data.
