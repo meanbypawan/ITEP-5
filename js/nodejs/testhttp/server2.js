@@ -5,7 +5,6 @@ import path from "path";
 
 http.createServer((request,response)=>{
     let parsedUrl = url.parse(request.url,true);
-    
     let __filename = fileURLToPath(import.meta.url);
     let __dirname = path.dirname(__filename);
     
