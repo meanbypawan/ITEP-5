@@ -22,7 +22,23 @@ class Admin{
        });
     }
 
-    signIn(){}
+    signIn(){
+        return new Promise((resolve,reject)=>{
+            pool.getConnection((err,con)=>{
+                if(err)
+                  reject(err);
+                else{
+                    let sql = "select * from admin where username = ? and password = ?";
+                    con.query(sql,[this.username,this.password],(err,result)=>{
+                        if(err)
+                          reject(err);
+                        else
+                          resolve(result);  
+                    })
+                }  
+            })
+        });
+    }
 }
 
 export default Admin;
