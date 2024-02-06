@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/dbConfig.js";
+import bcyrpt from "bcryptjs";
 
 const User = sequelize.define("user",{
     id:{
@@ -18,9 +19,19 @@ const User = sequelize.define("user",{
     },
     password:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        set(value){
+           let saltKey = bcyrpt.genSaltSync(10);
+           let encryptedPassword = bcyrpt.hashSync(value,saltKey);
+           this.setDataValue("password",encryptedPassword);
+        }
     }
 });
+
+User.checkPassword = (originalPassword,encryptedPassword)=>{
+    console.log("check Password called...."); 
+    return bcyrpt.compareSync(originalPassword,encryptedPassword);
+}
 
 sequelize.sync()
 .then(()=>{
