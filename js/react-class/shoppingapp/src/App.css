@@ -1,0 +1,12 @@
+.main{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signin-form{
+  width: 40%;
+  padding: 10px;
+  box-shadow: 10px 10px 10px grey;
+}
