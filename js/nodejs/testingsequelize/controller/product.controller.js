@@ -1,5 +1,13 @@
 import Product from "../model/product.model.js";
 
+export const getProductList = async (request,response,next)=>{
+   Product.findAll()
+   .then(result=>{
+    return response.status(200).json({productList: result});
+   }).catch(err=>{
+    return response.status(500).json({error: "Internal Server Error"});
+   })
+}
 export const saveInBulk = async (request,response,next)=>{
   try{ 
    let productList = request.body.products;

@@ -1,3 +1,7 @@
+*{
+  margin: 0;
+  padding: 0;
+}
 .main{
   width: 100%;
   height: 100vh;
@@ -9,4 +13,32 @@
   width: 40%;
   padding: 10px;
   box-shadow: 10px 10px 10px grey;
+}
+.header{
+  width: 100%;
+  height: 100px;
+}
+
+.header img{
+  width: 80px;
+  height: 65px;
+}
+.search-input{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-input input{
+  width: 80%;
+  height: 30px;
+  padding:5px;
+}
+.options{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
