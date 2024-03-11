@@ -16,7 +16,7 @@ export default ()=>{
     },[]);
     return <>
       <Header/>
-      <Category/>
+      <Category setProductList={setProductList}/>
       <Product productList={productList}/>
     </>
 }

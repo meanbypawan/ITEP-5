@@ -1,5 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 export default ()=>{
+    const navigate = useNavigate();
+    const signOut = ()=>{
+        sessionStorage.clear();
+        navigate("/");
+    }
     return <>
       <div>
         <header className="header bg-dark text-white">
@@ -18,7 +24,7 @@ export default ()=>{
                 <div className="col-md-3">
                     <div className="options">
                         <small>View Cart</small>
-                        <small>Sign out</small>
+                        <small onClick={signOut} style={{cursor:"pointer"}}>Sign out</small>
                     </div>
                 </div>
              </div>

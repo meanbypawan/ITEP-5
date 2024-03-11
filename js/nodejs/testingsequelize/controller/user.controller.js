@@ -8,7 +8,7 @@ export const signIn = async (request,response,next)=>{
     let user = await User.findOne({where:{email:email},raw: true});
     if(user){
       if(User.checkPassword(password,user.password))
-        return response.status(200).json({message: "Sign In Success"});
+        return response.status(200).json({message: "Sign In Success", user: user});
       return response.status(401).json({error: "Unauthorized user"});  
     }
     else

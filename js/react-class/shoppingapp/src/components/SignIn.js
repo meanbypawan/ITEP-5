@@ -14,6 +14,7 @@ export default ()=>{
                 toast.success("Sign in success....");
                 sessionStorage.setItem("current-user",email);
                 sessionStorage.setItem("isLoggedIn","true");
+                sessionStorage.setItem("user-id",""+response.data.user.id)
                 navigate("/home");
             }
         }).catch(err=>{
