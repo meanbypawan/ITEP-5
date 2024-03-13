@@ -4,6 +4,17 @@ import sequelize from "../db/dbConfig.js";
 import CartItems from "../model/cartitem.model.js";
 import Product from "../model/product.model.js";
 
+export const removeFromCart = async (request,response,next)=>{
+   let cart = await Cart.findOne({where:{userId: request.params.userId*1}});
+   if(cart){
+      CartItems.destroy({where:{cartId: cart.id, productId: request.params.productId*1}})
+      .then(result=>{
+         return response.status(200).json({message: "Item removed", removedItem: result});
+      }).catch(err=>{
+        return response.status(500).json({error: "Internal Server Error"});
+      });
+   }
+}
 export const fetchCartItems = (request,response,next)=>{
     Cart.findAll({raw: true, where:{userId: request.params.userId*1},
     include:[{model: Product, required: true}]})

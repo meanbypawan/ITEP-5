@@ -23,7 +23,7 @@ export default ()=>{
                 </div>
                 <div className="col-md-3">
                     <div className="options">
-                        <small>View Cart</small>
+                        <small onClick={()=>navigate("/view-cart")} style={{cursor:"pointer"}}>View Cart</small>
                         <small onClick={signOut} style={{cursor:"pointer"}}>Sign out</small>
                     </div>
                 </div>
