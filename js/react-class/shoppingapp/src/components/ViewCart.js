@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import Header from "./Header"
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import {Link, Outlet, useNavigate } from "react-router-dom";
 
 export default ()=>{
     const [cartItemList,setCartItemList] = useState([]);
@@ -27,8 +27,6 @@ export default ()=>{
         let product = cartItemList[index];
         product.qty = value;
         totalBillAmount = 0;
-        
-
         cartItemList.splice(index,1);
         cartItemList.splice(index,0,product);
         setCartItemList([...cartItemList]);
@@ -91,7 +89,17 @@ export default ()=>{
                  <label>Item purchased: {cartItemList.length}</label>
                  <label>Total Amount : <b className="text-success">{totalBillAmount}</b></label>
                </div>
-               <button className="mt-2 btn btn-secondary">Checkout</button>
+               <div>
+                 <Link to="order-detail">
+                  <button className="btn btn-secondary" style={{width:"100%",margin:"auto"}}>Checkout</button>
+                </Link>
+               </div> 
+            </div>
+
+            <div className="row mt-5">
+                <div className="col-12">
+                    <Outlet/>
+                </div>
             </div>
            </div>
          </div>       

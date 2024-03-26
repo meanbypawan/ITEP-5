@@ -9,7 +9,7 @@ export default ({productList})=>{
     })
     .catch(err=>{
         toast.error("Oops! something went wrong...");
-    })
+    });
   }
   return <>
     <ToastContainer/>
