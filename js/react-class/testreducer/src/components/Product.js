@@ -8,12 +8,13 @@ const Product = () => {
         }
         else if (action.type === "delete-product") {
             if (window.confirm("Are you sure ?")){
-                state.productList.splice(action.payload, 1);
+                state.productList.splice(action.payload, 1
+                    );
             }
             return {...state};
         }
     }, { productList: [] });
-    
+
     useEffect(() => {
         axios.get("https://dummyjson.com/products")
             .then(response => {

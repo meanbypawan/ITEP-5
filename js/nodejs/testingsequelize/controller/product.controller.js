@@ -10,7 +10,8 @@ export const getProductByCategory = (request,response,next)=>{
    })
 }
 export const getProductList = async (request,response,next)=>{
-   Product.findAll()
+  console.log("Api call......."); 
+  Product.findAll()
    .then(result=>{
     return response.status(200).json({productList: result});
    }).catch(err=>{

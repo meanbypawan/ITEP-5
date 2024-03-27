@@ -1,19 +1,12 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Category from "./Category"
 import Header from "./Header"
 import axios from "axios";
 import Product from "./Product";
+import { ProductContext } from "../App";
 
 export default ()=>{
-    const [productList,setProductList] = useState([]);
-    useEffect(()=>{
-        axios.get("http://localhost:3000/product/list")
-        .then(response=>{
-            setProductList(response.data.productList);
-        }).catch(err=>{
-            console.log(err);
-        })
-    },[]);
+    const {productList,setProductList} = useContext(ProductContext);
     return <>
       <Header/>
       <Category setProductList={setProductList}/>
