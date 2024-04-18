@@ -1,0 +1,52 @@
+MongoDb:-
+
+1. show dbs
+
+2. creating database or using existing datbase
+   use empdb
+   
+3. Creating collection
+   db.createCollection("employee")
+   
+   Collection :-
+     a. Capped Collection
+     b. Uncapped Collection   
+     
+4. db.test.insertOne({name:"A",age:25});     
+
+5. db.test.insertMany([{name:"B",age:26,mobile:"900911223"},
+    {name:"C",age: 35, mobile: "9009112443",gender:"male"}
+   ])
+   
+   // select * from products where id = 2
+6. db.products.find({id:2},{id:1,title:1,price:1})
+ 
+   // select id,title from products where id=2 and title='abc'
+   db.products.findOne({id:2,title:'abc'},{id:1,title:1,_id:0})
+   
+   Operators:
+    $gt, $lt, $gte, $lte, $eq, $nq
+    $and, $or, $lookup, $match.....
+    
+    // select * from products where price >= 100   
+    db.products.find({price: {$gte: 100}},{id:1,title:1,price:1,_id:0})
+    
+    db.products.find({
+      $and:[{price:{$gt:1000}},{price:{$lt:1500}}]
+    },{id:1, title:1, price:1,_id:0})
+    
+    db.employee.find({
+      $or:[{age:{$gt:30}},{salary:{$gte:70000}}]
+    }) 
+   
+    db.employee.find().limit(5)
+    
+    db.employee.find({},{_id:0}).sort({salary:-1}).toArray()[1].salary
+    
+    db.employee.find({
+      salary: db.employee.find({},{_id:0}).sort({salary:-1}).toArray()[1].salary
+    })
+    
+    
+   
+   
