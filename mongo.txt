@@ -47,6 +47,76 @@ MongoDb:-
       salary: db.employee.find({},{_id:0}).sort({salary:-1}).toArray()[1].salary
     })
     
+    db.employee.find({
+      salary:{$ne: db.employee.find({},{_id:0}).sort({salary:-1}).toArray()[1].salary}
+    }).sort({salary:-1})  
     
+    // Getting Second Highest salary value
+    db.employee.find({ salary: { $ne: db.employee.find({}, { _id: 0 }).sort({ salary: -1 }).toArray()[1].salary } }).sort({ salary: -1}).toArray()[0].salary
+   
+    db.employee.find({
+      salary: db.employee.find({ salary: { $ne: db.employee.find({}, { _id: 0 }).sort({ salary: -1 }).toArray()[1].salary } }).sort({ salary: -1}).toArray()[0].salary
+    });  
+ ---------------------------------------------------------------------
+   Collections
+    a. Embedded Documents
+       order(Collection)
+       {
+         _id: '',
+         orderDate: '',
+         amount: 50000,
+         orderItem:[
+           {},
+           {},
+           {}
+         ]
+       }
+    b. Referencing
+       categories(collection)
+       {
+         _id: '',
+         categoryName: 'smartphones'
+       }
+    
+       products(Collection)
+       {
+         _id: '',
+         category: 'smartphones'
+       }
+ 
+ -----------------------------------------------------------------
+   aggregate pipeline
+   db.categories.aggregate([
+     {
+       $lookup:{
+         from: "products",
+         localField: 'categoryName',
+         foreignField: 'category',
+         as: 'productList'
+       }
+     },
+     {
+       $match:{categoryName: 'home-decoration'}
+     }
+   ])
+   db.products.aggregate([
+     {
+       $match:{price:{$gt:1000}}
+     }
+   ]);
+   db.products.aggregate([
+     {
+       $match:{price:{$gt:1000}}
+     },{
+       $project:{title:1,price:1,_id:0}
+     }
+   ])
+ 
+ 
+ 
+   
+   
+   
+   
    
    
