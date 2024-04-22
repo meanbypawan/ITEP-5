@@ -1,5 +1,16 @@
+import { Op } from "sequelize";
 import Product from "../model/product.model.js";
-
+export const searchProduct = (request,response,next)=>{
+  let keyword = request.params.keyword;
+  console.log(keyword);
+  Product.findAll({ where : {title: {
+    [Op.like]: `%${keyword}%`
+  }}}).then(result=>{
+    return response.status(200).json({products: result});
+  }).catch(err=>{
+    return response.status(500).json({error: "Internal server error"});
+  })
+}
 export const getProductByCategory = (request,response,next)=>{
    Product.findAll({where: {categoryname: request.params.categoryName}})
    .then(result=>{
