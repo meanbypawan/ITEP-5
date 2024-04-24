@@ -109,11 +109,23 @@ MongoDb:-
        $match:{price:{$gt:1000}}
      },{
        $project:{title:1,price:1,_id:0}
+     },
+     {
+       $addFields:{abc:20}
      }
    ])
  
+   db.employee.updateOne({_id:ObjectId("662239bab80778b6f3be30ab")},{
+     $set:{salary: 69000}
+   }) 
  
- 
+   db.employee.update({age:32},{
+     $set:{salary:90000}
+   })
+   
+   With model (Mongoose) db
+   without model   
+   
    
    
    
