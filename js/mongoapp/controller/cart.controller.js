@@ -1,5 +1,4 @@
 import { Cart } from "../model/cart.model.js";
-
 export const removeItem = (request,response,next)=>{
     Cart.updateOne({userId: request.params.userId},{
         $pull:{cartItems: {productId: request.params.productId}}
@@ -8,9 +7,8 @@ export const removeItem = (request,response,next)=>{
          return response.status(200).json({message: "Item removed"});
         return response.status(401).json({error: "Id not found"});
     }).catch(err=>{
-        console.log(err);
         return response.status(500).json({message: "Internal server error"});
-    }) 
+    }); 
 }
 export const fetchCart = (request,response,next)=>{
     Cart.findOne({userId: request.params.userId}).populate("userId").populate("cartItems.productId")
