@@ -1,24 +1,80 @@
+import { useContext, useReducer, useRef, useState } from "react"
+import StudentData from "./StudentData";
+import StudentList from "./StudentList";
+import { StudentContext } from "../App";
 export default ()=>{
+    const {studentList} = useContext(StudentContext)
+    const [state,dispatch] = useReducer((state,action)=>{
+        if(action.type=="add"){
+           let {roll,name,email,city,branch,physic,chemistry,math} = action.payload;
+           if(roll && name && email && city!="0" && branch!="0" && physic && chemistry && math){
+            state.studentList.push({roll,name,email,city,branch,physic,chemistry,math});
+            window.alert("Student added successfully...");
+           }
+           else{
+             window.alert("Please fill all fields");
+           }
+           return {...state};  
+        }
+    },{
+        studentList
+    });
+    let rollInput = useRef();
+    let nameInput = useRef();
+    let emailInput = useRef();
+    let cityInput = useRef();
+    let branchInput = useRef();
+    let physicInput = useRef();
+    let chemistryInput = useRef();
+    let mathInput = useRef();    
+    const [rollNumberError,setRollNumberError] = useState(null);
+    const [emailError,setEmailError] = useState(null);
+
+    const isRollNumberExist = ()=>{
+        let roll = rollInput.current.value;
+        let student = state.studentList.find((student)=>{return student.roll == roll});
+        if(student){
+          setRollNumberError("Roll number already exist");
+          rollInput.current.focus();
+        }  
+        else
+          setRollNumberError("");  
+    }
+    const isEmailExist = ()=>{
+        let email = emailInput.current.value;
+        let student = state.studentList.find((student)=>{return student.email == email});
+        if(student){
+          setEmailError("Email id already exist");
+          emailInput.current.focus();
+        }  
+        else
+          setEmailError("");  
+    }
+    const shouldDisable = ()=>{
+        return (!rollNumberError) && (!emailError) && rollInput.current.value && nameInput.current.value && emailInput.current.value && (branchInput.current.value!="0") && (cityInput.current.value!='0') && physicInput.current.value && chemistryInput.current.value && mathInput.current.value;
+    }
     return <>
        <div className="container mt-2">
           <div className="row">
             <div className="col-md-4">
                 <label>Enter roll number</label>
-                <input type="text" className="form-control"/>
+                <input onBlur={isRollNumberExist} ref={rollInput} type="text" className="form-control"/>
+                {rollNumberError && <small className="text-danger">{rollNumberError}</small>}
             </div>
             <div className="col-md-4">
                 <label>Enter name</label>
-                <input type="text" className="form-control"/>
+                <input ref={nameInput} type="text" className="form-control"/>
             </div>
             <div className="col-md-4">
                 <label>Enter email</label>
-                <input type="email" className="form-control"/>
+                <input onBlur={isEmailExist} ref={emailInput} type="email" className="form-control"/>
+                {emailError && <small className="text-danger">{emailError}</small>}
             </div>
           </div>
           <div className="row">
             <div className="col-md-4">
                 <label>Curent city</label>
-                <select className="form-control">
+                <select ref={cityInput} className="form-control">
                     <option value='0'>select city</option>
                     <option value="Indore">Indore</option>
                     <option value="Mumbai">Mumbai</option>
@@ -27,7 +83,7 @@ export default ()=>{
             </div>
             <div className="col-md-4">
                 <label>Branch</label>
-                <select className="form-control">
+                <select ref={branchInput} className="form-control">
                     <option value='0'>select branch</option>
                     <option value="CS">CS</option>
                     <option value="IT">IT</option>
@@ -36,17 +92,21 @@ export default ()=>{
             </div>
             <div className="col-md-4">
                 <label>Physics Marks</label>
-                <input type="number" className="form-control"/>
+                <input ref={physicInput} type="number" className="form-control"/>
             </div>
             <div className="col-md-4">
                 <label>Chemistry Marks</label>
-                <input type="number" className="form-control"/>
+                <input ref={chemistryInput} type="number" className="form-control"/>
             </div>
             <div className="col-md-4">
                 <label>Math marks</label>
-                <input type="number" className="form-control"/>
+                <input ref={mathInput} type="number" className="form-control"/>
+            </div>
+            <div className="col-md-4 p-4">
+              <button onClick={()=>dispatch({type:"add",payload:{roll: rollInput.current.value,name: nameInput.current.value,email: emailInput.current.value,city: cityInput.current.value,branch: branchInput.current.value,physic: physicInput.current.value,chemistry: chemistryInput.current.value,math: mathInput.current.value}})} className="btn btn-success">ADD</button>
             </div>
           </div>
        </div>
+       <StudentList studentList={state.studentList}/>      
     </>
 }
