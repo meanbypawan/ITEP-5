@@ -3,22 +3,7 @@ import StudentData from "./StudentData";
 import StudentList from "./StudentList";
 import { StudentContext } from "../App";
 export default ()=>{
-    const {studentList} = useContext(StudentContext)
-    const [state,dispatch] = useReducer((state,action)=>{
-        if(action.type=="add"){
-           let {roll,name,email,city,branch,physic,chemistry,math} = action.payload;
-           if(roll && name && email && city!="0" && branch!="0" && physic && chemistry && math){
-            state.studentList.push({roll,name,email,city,branch,physic,chemistry,math});
-            window.alert("Student added successfully...");
-           }
-           else{
-             window.alert("Please fill all fields");
-           }
-           return {...state};  
-        }
-    },{
-        studentList
-    });
+    const {studentList,setStudentList} = useContext(StudentContext)
     let rollInput = useRef();
     let nameInput = useRef();
     let emailInput = useRef();
@@ -32,7 +17,7 @@ export default ()=>{
 
     const isRollNumberExist = ()=>{
         let roll = rollInput.current.value;
-        let student = state.studentList.find((student)=>{return student.roll == roll});
+        let student = studentList.find((student)=>{return student.roll == roll});
         if(student){
           setRollNumberError("Roll number already exist");
           rollInput.current.focus();
@@ -42,7 +27,7 @@ export default ()=>{
     }
     const isEmailExist = ()=>{
         let email = emailInput.current.value;
-        let student = state.studentList.find((student)=>{return student.email == email});
+        let student = studentList.find((student)=>{return student.email == email});
         if(student){
           setEmailError("Email id already exist");
           emailInput.current.focus();
@@ -50,8 +35,10 @@ export default ()=>{
         else
           setEmailError("");  
     }
-    const shouldDisable = ()=>{
-        return (!rollNumberError) && (!emailError) && rollInput.current.value && nameInput.current.value && emailInput.current.value && (branchInput.current.value!="0") && (cityInput.current.value!='0') && physicInput.current.value && chemistryInput.current.value && mathInput.current.value;
+    
+    const addNewStudent = ({roll,name,email,city,branch,physic,chemistry,math})=>{
+        studentList.push({roll,name,email,city,branch,physic,chemistry,math});
+        setStudentList([...studentList]);
     }
     return <>
        <div className="container mt-2">
@@ -103,10 +90,10 @@ export default ()=>{
                 <input ref={mathInput} type="number" className="form-control"/>
             </div>
             <div className="col-md-4 p-4">
-              <button onClick={()=>dispatch({type:"add",payload:{roll: rollInput.current.value,name: nameInput.current.value,email: emailInput.current.value,city: cityInput.current.value,branch: branchInput.current.value,physic: physicInput.current.value,chemistry: chemistryInput.current.value,math: mathInput.current.value}})} className="btn btn-success">ADD</button>
+              <button onClick={()=>addNewStudent({roll: rollInput.current.value,name: nameInput.current.value,email: emailInput.current.value,city: cityInput.current.value,branch: branchInput.current.value,physic: physicInput.current.value,chemistry: chemistryInput.current.value,math: mathInput.current.value})} className="btn btn-success">ADD</button>
             </div>
           </div>
        </div>
-       <StudentList studentList={state.studentList}/>      
+       <StudentList/>      
     </>
 }

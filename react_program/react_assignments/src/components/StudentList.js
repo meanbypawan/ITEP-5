@@ -1,10 +1,12 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom"
+import { StudentContext } from "../App";
 
-export default ({studentList})=>{
+export default ()=>{
   const navigate = useNavigate();
-    
+  const {studentList,setStudentList} = useContext(StudentContext);  
   const navigateToEditComponent = (index)=>{
-    navigate("/edit",{state:{index,studentList}});
+    navigate("/edit",{state:{index}});
   }  
   return <>
     <div className="container mt-4">
